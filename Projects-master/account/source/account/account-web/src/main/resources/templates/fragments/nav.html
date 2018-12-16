@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div th:fragment="nav">
+
+    <div class="columnLeftMenu">
+
+        <h6 ><span class="f-right"></span>系统管理</h6>
+        <ul >
+            <li><a th:classappend="${page == 'movie/index' ? 'currentPageNav' : ''}" th:href="@{/movie/index}">系统设置</a></li>
+            <li><a th:classappend="${page == 'actor/index' ? 'currentPageNav' : ''}" th:href="@{/actor/index}">商品管理</a></li>
+             <li><a th:classappend="${page == 'actor/torpt' ? 'currentPageNav' : ''}" th:href="@{/actor/torpt}">查询统计</a></li>
+        </ul>
+
+    </div>
+</div>
+</body>
+</html>

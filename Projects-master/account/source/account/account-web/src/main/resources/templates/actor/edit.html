@@ -1,0 +1,50 @@
+<script th:src="@{/scripts/actor/edit.js}"></script>
+<form id="saveForm" method="post">
+	<input type="hidden" name="id" id="id" th:value="${exp.id}" />
+	<div class="addInfBtn">
+		<h3 class="itemTit">
+			<span>编辑信息</span>
+		</h3>
+		<table class="addNewInfList">
+			<tr>
+				<th>购买日期</th>
+				<td><input
+					onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" type="text"
+					class="inp-list w-200 clear-mr f-left"
+					th:value="${exp.createTime} ? ${#dates.format(exp.createTime,'yyyy-MM-dd HH:mm:ss')} :''"
+					id="createTime" name="createTime" /></td>
+				<th>名称</th>
+				<td width="240"><select  name="itemid" id="itemid">
+						<option th:each="item:${items}" th:value="${item.id}"
+							th:text="${item.name}" th:selected="${item.name==exp.item.name}"></option>
+				</select></td>
+			</tr>
+			<tr>
+				<th>数量</th>
+				<td width="240"><input class="inp-list w-200 clear-mr f-left"
+					type="text" th:value="${exp.qty}" id="qty" name="qty"
+					maxlength="16" /></td>
+				<th>单价</th>
+				<td width="240"><input class="inp-list w-200 clear-mr f-left"
+					type="text" th:value="${exp.price}" id="price" name="price"
+					maxlength="16" /></td>
+			</tr>
+			<tr>
+				<th>总价</th>
+				<td width="240"><input class="inp-list w-200 clear-mr f-left"
+					type="text" th:value="${exp.charge}" id="charge" name="charge"
+					maxlength="16" /></td>
+				<th>备注</th>
+				<td width="240"><input class="inp-list w-200 clear-mr f-left"
+					type="text" th:value="${exp.remark}" id="remark" name="remark"
+					maxlength="16" /></td>
+			</tr>
+		</table>
+
+		<div class="bottomBtnBox">
+			<a class="btn-93X38 saveBtn" href="javascript:void(0)">确定1</a> <a
+				class="btn-93X38 backBtn" href="javascript:closeDialog(0)">返回</a>
+		</div>
+	</div>
+
+</form>

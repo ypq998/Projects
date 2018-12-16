@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.apple.account</groupId>
+		<artifactId>account</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>account-data</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- datasource: -->
+		<!-- url: jdbc:sqlserver://localhost:1433;instanceName=apple2008;DatabaseName=MyAccount -->
+		<!-- driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver -->
+		<!-- username: sa -->
+		<!-- password: 123456 -->
+		<!-- initial-size: 1 -->
+		<!-- min-idle: 1 -->
+		<!-- max-active: 20 -->
+		<!-- test-on-borrow: true -->
+		<!-- max-wait: 60000 -->
+		<!-- time-between-eviction-runs-millis: 60000 -->
+		<!-- min-evictable-idle-time-millis: 300000 -->
+		<!-- validation-query: SELECT 1 FROM DUAL -->
+		<!-- test-While-Idle: true -->
+		<!-- test-on-return: false -->
+		<!-- pool-prepared-statements: false -->
+		<!-- max-pool-prepared-statement-per-connection-size: 20 -->
+		<!-- filters: stat,wall,log4j,confi -->
+		<!-- jpa: -->
+		<!-- database: SQL_SERVER -->
+		<!-- show-sql: true -->
+		<!-- ## Hibernate ddl auto (validate|create|create-drop|update) -->
+		<!-- hibernate: -->
+		<!-- ##ddl-auto: update -->
+		<!-- naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy -->
+		<!-- properties: -->
+		<!-- hibernate: -->
+		<!-- dialect: org.hibernate.dialect.SQLServerDialect -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>com.microsoft.sqlserver</groupId> -->
+		<!-- <artifactId>sqljdbc4</artifactId> -->
+		<!-- <version>4.2</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.microsoft.sqlserver</groupId> -->
+		<!-- <artifactId>sqljdbc4</artifactId> -->
+		<!-- <version>4.0</version> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.boot</groupId> -->
+		<!-- <artifactId>spring-boot-devtools</artifactId> -->
+		<!-- <optional>true</optional> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.boot</groupId> -->
+		<!-- <artifactId>spring-boot-starter-test</artifactId> -->
+		<!-- <scope>test</scope> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>javax.xml.bind</groupId> -->
+		<!-- <artifactId>jaxb-api</artifactId> -->
+		<!-- <version>2.3.0</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.sun.xml.bind</groupId> -->
+		<!-- <artifactId>jaxb-impl</artifactId> -->
+		<!-- <version>2.3.0</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.sun.xml.bind</groupId> -->
+		<!-- <artifactId>jaxb-core</artifactId> -->
+		<!-- <version>2.3.0</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>javax.activation</groupId> -->
+		<!-- <artifactId>activation</artifactId> -->
+		<!-- <version>1.1.1</version> -->
+		<!-- </dependency> -->
+
+	</dependencies>
+
+</project>
