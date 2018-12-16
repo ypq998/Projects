@@ -15,32 +15,33 @@ public class RptController {
 	@Autowired
 	RestTemplate restTemplate;
 
-
 	@SuppressWarnings("unused")
 	private String getBrokenDown() {
 		return "brokenDown";
 	}
 
-	//@HystrixCommand(fallbackMethod = "getBrokenDown")
+	String serviceUrl = "http://localhost:8888/provider";
+
+	// @HystrixCommand(fallbackMethod = "getBrokenDown")
 	@RequestMapping("rpt/getTotalByYear")
 	public String getTotalByYear() {
-		String rel= restTemplate.getForEntity("http://provider/rpt/getTotalByYear", String.class).getBody();
+		String rel = restTemplate.getForEntity(serviceUrl+"/rpt/getTotalByYear", String.class).getBody();
 		return rel;
 	}
 
 	@RequestMapping("rpt/getTotalByItem")
 	public String getTotalByItem() {
-		return restTemplate.getForEntity("http://PROVIDER/rpt/getTotalByItem", String.class).getBody();
+		return restTemplate.getForEntity(serviceUrl+"/rpt/getTotalByItem", String.class).getBody();
 	}
 
 	@RequestMapping("rpt/getTotalThisYearByMonth")
 	public String getTotalThisYearByMonth() {
-		return restTemplate.getForEntity("http://PROVIDER/rpt/getTotalThisYearByMonth", String.class).getBody();
+		return restTemplate.getForEntity(serviceUrl+"/rpt/getTotalThisYearByMonth", String.class).getBody();
 	}
 
 	@RequestMapping("rpt/getAllTotalThisYearByItem")
 	public String getAllTotalThisYearByItem() {
-		return restTemplate.getForEntity("http://PROVIDER/rpt/getAllTotalThisYearByItem", String.class).getBody();
+		return restTemplate.getForEntity(serviceUrl+"/rpt/getAllTotalThisYearByItem", String.class).getBody();
 	}
 
 }

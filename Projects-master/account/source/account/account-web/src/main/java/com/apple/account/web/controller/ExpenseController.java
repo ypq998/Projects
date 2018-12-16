@@ -41,6 +41,7 @@ public class ExpenseController {
 
 	@Autowired
 	RestTemplate restTemplate;
+	String serviceUrl = "http://localhost:8888/provider";
 
 	@RequestMapping("/")
 	public String index() {
@@ -88,7 +89,7 @@ public class ExpenseController {
 			map.add("name", name);
 			map.add("page", page);
 			map.add("size", size);
-			rel = restTemplate.postForObject("http://provider/actor/list", map, String.class);
+			rel = restTemplate.postForObject(serviceUrl + "/actor/list", map, String.class);
 
 		}
 
@@ -108,7 +109,7 @@ public class ExpenseController {
 	public String show(ModelMap model, @PathVariable Long id) {
 		MultiValueMap<String, Long> map = new LinkedMultiValueMap<>();
 		map.add("id", id);
-		String rel = restTemplate.postForObject("http://provider/actor/getExpByID", map, String.class);
+		String rel = restTemplate.postForObject(serviceUrl + "/actor/getExpByID", map, String.class);
 		GsonBuilder builder = new GsonBuilder();
 		builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
 			public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
@@ -129,7 +130,7 @@ public class ExpenseController {
 		try {
 			MultiValueMap<String, Long> map = new LinkedMultiValueMap<>();
 			map.add("id", id);
-			String rel = restTemplate.postForObject("http://provider/actor/deleteByID", map, String.class);
+			String rel = restTemplate.postForObject(serviceUrl + "/actor/deleteByID", map, String.class);
 			return rel;
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
@@ -142,7 +143,7 @@ public class ExpenseController {
 	@RequestMapping("actor/new")
 	public String toAdd(ModelMap model, Expense user) {// OK
 		Gson gson = new Gson();
-		String rel = restTemplate.getForEntity("http://provider/actor/getAllItem", String.class).getBody();
+		String rel = restTemplate.getForEntity(serviceUrl + "/actor/getAllItem", String.class).getBody();
 		List<Item> list = gson.fromJson(rel, new TypeToken<List<Item>>() {
 		}.getType());
 		model.addAttribute("items", list);
@@ -169,13 +170,13 @@ public class ExpenseController {
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
 		String ss = gson.toJson(exp);
 		map.add("exp", ss);
-		String rel = restTemplate.postForObject("http://provider/actor/add", map, String.class);
+		String rel = restTemplate.postForObject(serviceUrl + "/actor/add", map, String.class);
 		logger.info("新增->ID=" + exp.getId());
 		return rel;
 	}
 
-	@Autowired
-	Remote remote;
+	// @Autowired
+	// Remote remote;
 
 	@RequestMapping(value = "actor/getByItemID", method = RequestMethod.POST)
 	@ResponseBody
@@ -184,7 +185,7 @@ public class ExpenseController {
 			return new Expense();
 		MultiValueMap<String, Long> map = new LinkedMultiValueMap<>();
 		map.add("itemID", itemid);
-		String rel = restTemplate.postForObject("http://provider/actor/getLatestExpByItemID", map, String.class);
+		String rel = restTemplate.postForObject(serviceUrl + "/actor/getLatestExpByItemID", map, String.class);
 		GsonBuilder builder = new GsonBuilder();
 		builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
 			public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
@@ -211,12 +212,12 @@ public class ExpenseController {
 			}
 		});
 		Gson gson = builder.create();
-		String rel = restTemplate.postForObject("http://provider/actor/getExpByID", map, String.class);
+		String rel = restTemplate.postForObject(serviceUrl + "/actor/getExpByID", map, String.class);
 		Expense exp = gson.fromJson(rel, new TypeToken<Expense>() {
 		}.getType());
 		model.addAttribute("exp", exp);
 
-		rel = restTemplate.getForEntity("http://provider/actor/getAllItem", String.class).getBody();
+		rel = restTemplate.getForEntity(serviceUrl + "/actor/getAllItem", String.class).getBody();
 		List<Item> list = gson.fromJson(rel, new TypeToken<List<Item>>() {
 		}.getType());
 		model.addAttribute("items", list);
@@ -231,7 +232,7 @@ public class ExpenseController {
 		exp.setItem(item);
 		MultiValueMap<String, Expense> map = new LinkedMultiValueMap<>();
 		map.add("exp", exp);
-		String rel = restTemplate.postForObject("http://provider/actor/update", map, String.class);
+		String rel = restTemplate.postForObject(serviceUrl + "/actor/update", map, String.class);
 
 		logger.info("修改->ID=" + exp.getId());
 		return rel;

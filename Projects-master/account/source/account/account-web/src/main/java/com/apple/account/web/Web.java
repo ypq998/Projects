@@ -27,7 +27,7 @@ public class Web {
 		SpringApplication.run(Web.class, args);
 	}
 	
-	@LoadBalanced
+//	@LoadBalanced
 	@Bean
 	RestTemplate restTemplate() {
 		return new RestTemplate();
