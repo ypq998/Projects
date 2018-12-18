@@ -155,7 +155,7 @@ public class ExpenseController {
 
 	@RequestMapping(value = "actor/save", method = RequestMethod.POST)
 	@ResponseBody
-	public String add(Expense exp, long itemid) throws Exception {
+	public String add(Expense exp, Long itemid) throws Exception {
 		Item item = new Item();
 		item.setId(itemid);
 		exp.setItem(item);
@@ -183,7 +183,7 @@ public class ExpenseController {
 
 	@RequestMapping(value = "actor/getByItemID", method = RequestMethod.POST)
 	@ResponseBody
-	public Expense findByItemID(@PathVariable Long itemid) {
+	public Expense findByItemID(Long itemid) {
 		if (itemid == null)
 			return new Expense();
 		MultiValueMap<String, Long> map = new LinkedMultiValueMap<>();

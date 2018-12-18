@@ -10,8 +10,8 @@
 				 
 				<th>名称</th>
 				<td width="240">
-<!-- 				<input  type="text"  id="item" name="item" -->
-<!-- 					maxlength="16" width="100" /> -->
+				<input  type="text"  id="itemname" name="itemname"
+					maxlength="16" width="100" />
 				<select  name="itemid" id="itemid" width="80">
 						<option th:each="item:${items}" th:value="${item.id}"
 							th:text="${item.name}" ></option>

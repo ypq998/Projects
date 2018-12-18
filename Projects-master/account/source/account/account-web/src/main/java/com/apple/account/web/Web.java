@@ -12,16 +12,16 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 
-@EnableHystrix
-@EnableZuulProxy
-@EnableDiscoveryClient
+//@EnableHystrix
+//@EnableZuulProxy
+//@EnableDiscoveryClient
 @SpringBootApplication
-@EnableFeignClients
-@EnableCircuitBreaker
+//@EnableFeignClients
+//@EnableCircuitBreaker
 public class Web {
 
 	/**
-	 * C
+	 * Web
 	 * @param args
 	 */
 	public static void main(String[] args) {

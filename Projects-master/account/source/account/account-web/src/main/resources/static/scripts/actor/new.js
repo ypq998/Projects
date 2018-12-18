@@ -27,54 +27,57 @@ $(function() {
 	$('.saveBtn')
 			.click(
 					function() {
-						// if ($('#saveForm').valid()) {
-						console.log($("#saveForm").serialize());
-						$
-								.ajax({
-									type : "POST",
-									url : "/actor/save",
-									data : $("#saveForm").serialize(),
-									headers : {
-										"Content-type" : "application/x-www-form-urlencoded;charset=UTF-8"
-									},
-									success : function(data) {
-										if (data == 1) {
-											alert("保存成功");
-											pageaction();
-											closeDialog();
-										} else {
-											alert(data);
+						// alert( $("#saveForm").serialize());
+						if ($('#saveForm').valid()) {
+							console.log($("#saveForm").serialize());
+							$
+									.ajax({
+										type : "POST",
+										url : "/actor/save",
+										data : $("#saveForm").serialize(),
+										headers : {
+											"Content-type" : "application/x-www-form-urlencoded;charset=UTF-8"
+										},
+										success : function(data) {
+											if (data == 1) {
+												alert("保存成功");
+												pageaction();
+												//closeDialog();
+											} else {
+												alert(data);
+											}
+										},
+										error : function(data) {
+											var e;
+											$.each(data, function(v) {
+												e += v + " ";
+											});
+											alert(e);
+											// alert("error");
 										}
-									},
-									error : function(data) {
-										var e;
-										$.each(data, function(v) {
-											e += v + " ";
-										});
-										alert(e);
-										alert("error");
-									}
-								});
-						// } else {
-						// alert('数据验证失败，请检查！');
-						// }
+									});
+						} else {
+							alert('数据验证失败，请检查！');
+						}
 					});
 
 	$('#itemid')
 			.change(
 					function() {
-						alert($("#saveForm").serialize());
+						//alert($("#saveForm").serialize());
 						console.log($("#saveForm").serialize());
 						var obj = document.getElementById("itemid"); // 定位id
 						var index = obj.selectedIndex; // 选中索引
 						var text = obj.options[index].text; // 选中文本
 						var value = obj.options[index].value; // 选中值
-						// document.getElementById("item").value = text;
+						document.getElementById("itemname").value = text;
 						$
 								.ajax({
 									type : "POST",
 									url : "/actor/getByItemID",
-									data : {itemid:2},
+									data : {
+										itemid : 2
+									},
 									headers : {
 										"Content-type" : "application/x-www-form-urlencoded;charset=UTF-8"
 									},
@@ -87,18 +90,18 @@ $(function() {
 								});
 					});
 
-	// $('#item').blur(function() {
-	// $('#itemid').children("option").each(function() {
-	// var found = true;
-	// if ($(this).text() == $('#item').val()) {// 每一个option
-	// $(this).attr('selected', 'selected');
-	// $("#itemid").trigger("change");
-	// found = true;
-	// }
-	// });
-	// if (!found) {
-	// alert("输入的项不存在");
-	// }
-	// });
+	$('#itemname').blur(function() {
+		$('#itemid').children("option").each(function() {
+			var found = true;
+			if ($(this).text() == $('#itemname').val()) {// 每一个option
+				$(this).attr('selected', 'selected');
+				$("#itemid").trigger("change");
+				found = true;
+			}
+		});
+		if (!found) {
+			alert("输入的项不存在");
+		}
+	});
 
 });

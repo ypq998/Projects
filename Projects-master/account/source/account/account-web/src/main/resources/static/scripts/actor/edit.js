@@ -1,18 +1,18 @@
 $(function(){
-	$('#saveForm').validate({
-		rules: {
-			name       :{required:true}
-		},submitHandler:function(){
-            return false;
-        },errorPlacement:function(error,ele){
-        	 ele.attr('data',error.html());
-        },success:function(label){
-        	
-        },ignore: ''
- 	});
+//	$('#saveForm').validate({
+//		rules: {
+//			name       :{required:true}
+//		},submitHandler:function(){
+//            return false;
+//        },errorPlacement:function(error,ele){
+//        	 ele.attr('data',error.html());
+//        },success:function(label){
+//        	
+//        },ignore: ''
+// 	});
 	$('.saveBtn').click(function(){
 	   if($('#saveForm').valid()){
-		   alert($("#saveForm").serialize());
+//		   alert($("#saveForm").serialize());
            $.ajax({
                type: "POST",
                url: "./update",
