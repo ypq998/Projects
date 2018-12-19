@@ -155,24 +155,13 @@ public class ExpenseController {
 
 	@RequestMapping(value = "actor/save", method = RequestMethod.POST)
 	@ResponseBody
-	public String add(Expense exp, Long itemid) throws Exception {
+	public String add(Expense exp, long itemid) throws Exception {
 		Item item = new Item();
 		item.setId(itemid);
 		exp.setItem(item);
 		exp.setCreateTime(new Date());
-		GsonBuilder builder = new GsonBuilder();
-		builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
-			public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-					throws JsonParseException {
-				return new Date(json.getAsJsonPrimitive().getAsLong());
-			}
-		});
-		builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
-		Gson gson = builder.create();
-
-		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-		String ss = gson.toJson(exp);
-		map.add("exp", ss);
+		MultiValueMap<String, Expense> map = new LinkedMultiValueMap<>();
+		map.add("exp", exp);
 		String rel = restTemplate.postForObject(serviceUrl + "/actor/add", map, String.class);
 		logger.info("新增->ID=" + exp.getId());
 		return rel;
@@ -204,7 +193,7 @@ public class ExpenseController {
 
 	// *************EDIT
 	@RequestMapping(value = "actor/edit/{id}")
-	public String update(ModelMap model, @PathVariable Long id) {
+	public String toUpdate(ModelMap model, @PathVariable Long id) {
 		MultiValueMap<String, Long> map = new LinkedMultiValueMap<>();
 		map.add("id", id);
 		GsonBuilder builder = new GsonBuilder();

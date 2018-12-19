@@ -11,11 +11,11 @@ $(function(){
 //        },ignore: ''
 // 	});
 	$('.saveBtn').click(function(){
-	   if($('#saveForm').valid()){
-//		   alert($("#saveForm").serialize());
+//	   if($('#saveForm').valid()){
+		  // alert($("#saveForm").serialize());
            $.ajax({
                type: "POST",
-               url: "./update",
+               url: "/actor/update",
                data: $("#saveForm").serialize(),
                headers: {"Content-type": "application/x-www-form-urlencoded;charset=UTF-8"},
                success: function (data) {
@@ -28,9 +28,9 @@ $(function(){
                    }
                }
            });
-	   }else{
-		   alert('数据验证失败，请检查！');
-	   }
+//	   }else{
+//		   alert('数据验证失败，请检查！');
+//	   }
 	});
 
 });	

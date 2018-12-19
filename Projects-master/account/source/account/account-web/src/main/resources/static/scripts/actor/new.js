@@ -28,8 +28,8 @@ $(function() {
 			.click(
 					function() {
 						// alert( $("#saveForm").serialize());
-						if ($('#saveForm').valid()) {
-							console.log($("#saveForm").serialize());
+						//if ($('#saveForm').valid()) {
+						//	console.log($("#saveForm").serialize());
 							$
 									.ajax({
 										type : "POST",
@@ -56,9 +56,9 @@ $(function() {
 											// alert("error");
 										}
 									});
-						} else {
-							alert('数据验证失败，请检查！');
-						}
+//						} else {
+//							alert('数据验证失败，请检查！');
+//						}
 					});
 
 	$('#itemid')
